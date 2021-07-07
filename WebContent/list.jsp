@@ -55,7 +55,7 @@
 		}
 	%>
 	
-	
+	<a href="./writeForm.jsp">추가번호등록</a>
 	
 
 
