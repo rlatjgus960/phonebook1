@@ -206,5 +206,43 @@ public class PhoneDao {
 		close();
 		return count;
 	}
+	
+	
+	//사람 한명 가져오기
+	public PersonVo getPerson(int personId) {
+		int count=0;
+		getConnection();
+		PersonVo personVo = null;
+		try {
+			String query = "";
+			query += " select  person_id, ";
+			query += "         name, ";
+			query += "         hp, ";
+			query += "         company ";
+			query += " from  person ";
+			query += " where  person_id = ? ";
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, personId);
+		
+			rs = pstmt.executeQuery();
+			
+			
+			//결과처리
+			while(rs.next()) {
+				int pid = rs.getInt("person_id");
+				String name = rs.getString("name");
+				String hp = rs.getString("hp");
+				String company = rs.getString("company");
+				
+				personVo = new PersonVo(pid, name, hp, company);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+		
+		return personVo;
+	}
 
 }

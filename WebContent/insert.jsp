@@ -7,6 +7,8 @@
 <%@ page import = "com.javaex.vo.PersonVo" %>
     
 <%
+	request.setCharacterEncoding("UTF-8");
+	
    String name = request.getParameter("name");
    String hp = request.getParameter("hp");
    String company = request.getParameter("company");
@@ -24,11 +26,18 @@
    //System.out.println(company);
    
    
-   //리스트 가져오기
-   List<PersonVo> personList = phoneDao.getPersonList();
-   System.out.println(personList.toString());
+   //리스트 가져오기 --> 리다이렉트로 할거임
+   //List<PersonVo> personList = phoneDao.getPersonList();
+   //System.out.println(personList.toString());
+   
+   
+   response.sendRedirect("./list.jsp"); //저장 돌고 재요청 들어가서 다시 시작 --> 두바퀴 도는거
+   
    
 %>
+
+
+<%-- 
 
 <!DOCTYPE html>
 <html>
@@ -67,3 +76,6 @@
 	%>
 </body>
 </html>
+
+
+--%>
